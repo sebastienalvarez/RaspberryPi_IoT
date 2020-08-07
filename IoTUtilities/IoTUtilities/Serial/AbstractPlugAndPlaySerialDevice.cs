@@ -71,7 +71,7 @@ namespace IoTUtilities.Serial
         /// <summary>
         /// Délégué pour la gestion du changement d'état du périphérique série pour la fonctionnalité Plug & Play
         /// </summary>
-        /// <param name="sender">Objet ayant levé l'événement</param>
+        /// <param name="sender">Objet ayant levé l'événement (non utilisé)</param>
         /// <param name="state">Etat concerné par le changement</param>
         public delegate void SerialDeviceStateEventHandler(object sender, SerialDeviceState state);
 

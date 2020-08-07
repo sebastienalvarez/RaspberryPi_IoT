@@ -122,9 +122,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serial\AbstractPlugAndPlaySerialDevice.cs" />
+    <Compile Include="Serial\PlugAndPlaySerialDeviceViewModel.cs" />
     <Compile Include="Serial\SerialDeviceState.cs" />
     <Compile Include="Serial\SerialPortParameters.cs" />
     <Compile Include="Serial\SystemSerialDevices.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\IoTUtilities.rd.xml" />
   </ItemGroup>
   <ItemGroup>
