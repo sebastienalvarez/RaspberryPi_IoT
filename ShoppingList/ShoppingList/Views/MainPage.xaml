@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="ShoppingList.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ShoppingList.Views"
+    xmlns:control="using:ShoppingList.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="1ER TEST..."></TextBlock>
+        <control:ProductControl x:Name="ProductControl" Grid.Row="1"></control:ProductControl>
+        <TextBlock Grid.Row="2" Text="MENU COMMANDE ICI..."></TextBlock>
+    </Grid>
+</Page>

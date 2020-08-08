@@ -12,6 +12,8 @@
  ****************************************************************************************************************************************/
 
 using IoTUtilities.ViewModel;
+using System;
+using System.Threading.Tasks;
 
 namespace IoTUtilities.Serial
 {
@@ -50,7 +52,7 @@ namespace IoTUtilities.Serial
         public PlugAndPlaySerialDeviceViewModel(AbstractPlugAndPlaySerialDevice a_model)
         {
             model = a_model;
-            model.OnStateChanged += Model_OnStateChanged;
+            model.OnStateChanged += Model_OnStateChangedAsync;
         }
 
         // METHODES
@@ -59,15 +61,21 @@ namespace IoTUtilities.Serial
         /// </summary>
         /// <param name="sender">Objet ayant levé l'événement (non utilisé)</param>
         /// <param name="state">Etat concerné par le changement</param>
-        private void Model_OnStateChanged(object sender, SerialDeviceState state)
+        private async Task Model_OnStateChangedAsync(object sender, SerialDeviceState state)
         {
             switch(state)
             {
                 case SerialDeviceState.CONNECTED:
-                    OnPropertyChanged(nameof(IsConnected));
+                    await coreDispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        OnPropertyChanged(nameof(IsConnected));
+                    });
                     break;
                 case SerialDeviceState.OPENED:
-                    OnPropertyChanged(nameof(IsOpened));
+                    await coreDispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        OnPropertyChanged(nameof(IsOpened));
+                    });
                     break;
             }
         }

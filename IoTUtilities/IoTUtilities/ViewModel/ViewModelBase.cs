@@ -12,13 +12,15 @@
  ****************************************************************************************************************************************/
 
 using System.ComponentModel;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 
 namespace IoTUtilities.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
         // PROPRIETES
-        // Pas de propriétés
+        protected static CoreDispatcher coreDispatcher = null; // Objet CoreDispatcher pour réaliser des opérations sur le thread graphique principal
 
         // EVENEMENT
         /// <summary>
@@ -27,7 +29,16 @@ namespace IoTUtilities.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         // CONSTRUCTEUR
-        // Constructeur par défaut
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        public ViewModelBase()
+        {
+            if(coreDispatcher == null)
+            {
+                coreDispatcher = Window.Current.Dispatcher;
+            }
+        }
 
         // METHODES
         /// <summary>

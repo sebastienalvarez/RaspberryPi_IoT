@@ -73,12 +73,12 @@ namespace IoTUtilities.Serial
         /// </summary>
         /// <param name="sender">Objet ayant levé l'événement (non utilisé)</param>
         /// <param name="state">Etat concerné par le changement</param>
-        public delegate void SerialDeviceStateEventHandler(object sender, SerialDeviceState state);
+        public delegate Task SerialDeviceStateEventHandlerAsync(object sender, SerialDeviceState state);
 
         /// <summary>
         /// Evenement pour gestion du changement d'état du périphérique série pour la fonctionnalité Plug & Play
         /// </summary>
-        public event SerialDeviceStateEventHandler OnStateChanged;
+        public event SerialDeviceStateEventHandlerAsync OnStateChanged;
 
         // CONSTRUCTEUR
         /// <summary>
