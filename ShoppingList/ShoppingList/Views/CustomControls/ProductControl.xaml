@@ -5,9 +5,18 @@
     xmlns:local="using:ShoppingList.Views.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:IoTUtilities.ViewModel.Converters"
     mc:Ignorable="d"
     d:DesignHeight="100"
     d:DesignWidth="500">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></conv:BoolToVisibilityConverter> 
+    </UserControl.Resources>
+    
+    <UserControl.Visibility>
+        <Binding Path="IsVisible" Converter="{StaticResource BoolToVisibilityConverter}"></Binding>
+    </UserControl.Visibility>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -35,8 +44,8 @@
 
         <!--Affichage des boutons de contrôles de la quantité de produit-->
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="+" Margin="2"></Button>
-            <Button Content="-" Margin="2"></Button>
+            <Button Content="+" Margin="2" Command="{Binding AddOneProduct}"></Button>
+            <Button Content="-" Margin="2" Command="{Binding RemoveOneProduct}"></Button>
         </StackPanel>
 
         <!--Affichage du code barre-->

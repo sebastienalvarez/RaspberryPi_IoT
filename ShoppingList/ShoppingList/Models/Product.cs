@@ -47,7 +47,7 @@ namespace ShoppingList.Models
                 if(value != name)
                 {
                     name = value;
-                    OnProductChanged(this, nameof(Name));
+                    OnProductChanged?.Invoke(this, nameof(Name));
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace ShoppingList.Models
                 if(value != number)
                 {
                     number = value;
-                    OnProductChanged(this, nameof(Number));
+                    OnProductChanged?.Invoke(this, nameof(Number));
                 }
             }
         }
@@ -75,6 +75,7 @@ namespace ShoppingList.Models
         /// </summary>
         /// <param name="sender">Objet ayant levé l'événement (non utilisé)</param>
         /// <param name="propertyName">Nom de la propriété modifiée</param>
+        /// <returns></returns>
         public delegate Task ProductChangedEventHandlerAsync(object sender, string propertyName);
 
         /// <summary>
@@ -123,12 +124,12 @@ namespace ShoppingList.Models
                     if (string.IsNullOrEmpty(Name) && (!string.IsNullOrEmpty(data.product.product_name) || !string.IsNullOrEmpty(data.product.quantity) || !string.IsNullOrEmpty(data.product.brands)))
                     {
                         Name = $"{data.product.product_name} - {data.product.quantity} - {data.product.brands}";
-                        OnProductChanged(this, nameof(Name));
+                        OnProductChanged?.Invoke(this, nameof(Name));
                     }
                     ImageUrl = data.product.image_thumb_url;
                     if (!string.IsNullOrEmpty(ImageUrl))
                     {
-                        OnProductChanged(this, nameof(ImageUrl));
+                        OnProductChanged?.Invoke(this, nameof(ImageUrl));
                     }
                 }
             }

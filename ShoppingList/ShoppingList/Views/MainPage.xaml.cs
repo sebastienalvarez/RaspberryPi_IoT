@@ -31,11 +31,29 @@ namespace ShoppingList.Views
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string barCodeTest = "3178530402728";
-            Product productTest = Product.CreateProductFromBarCode(barCodeTest);
-            ProductViewModel vm = new ProductViewModel(productTest);
-            ProductControl.DataContext = vm;
+            ProductListViewModel vm = new ProductListViewModel(ProductList.Instance);
+            ProductListControl.DataContext = vm;
+            FilterButton.DataContext = vm;
+            ClearButton.DataContext = vm;
 
+            string barCodeTest = "3178530402728";
+            ProductList.Instance.AddBarCode(barCodeTest);
+            barCodeTest = "3394215961520";
+            ProductList.Instance.AddBarCode(barCodeTest);
+            barCodeTest = "3017620420078";
+            ProductList.Instance.AddBarCode(barCodeTest);
+
+
+            //string barCodeTest = "3178530402728";
+            //Product productTest = Product.CreateProductFromBarCode(barCodeTest);
+            //ProductViewModel vm = new ProductViewModel(productTest);
+            //ProductControl.DataContext = vm;
+        }
+
+        private void ProductListControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+            lv.ScrollIntoView(e.AddedItems.FirstOrDefault());
         }
     }
 }

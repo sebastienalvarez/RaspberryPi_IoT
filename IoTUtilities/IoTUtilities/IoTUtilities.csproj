@@ -126,6 +126,8 @@
     <Compile Include="Serial\SerialDeviceState.cs" />
     <Compile Include="Serial\SerialPortParameters.cs" />
     <Compile Include="Serial\SystemSerialDevices.cs" />
+    <Compile Include="ViewModel\Commands\CommandBase.cs" />
+    <Compile Include="ViewModel\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\IoTUtilities.rd.xml" />
   </ItemGroup>
