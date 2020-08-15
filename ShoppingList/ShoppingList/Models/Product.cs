@@ -48,6 +48,7 @@ namespace ShoppingList.Models
                 {
                     name = value;
                     OnProductChanged?.Invoke(this, nameof(Name));
+                    ProductList.Instance.IsModified = true;
                 }
             }
         }
@@ -65,6 +66,7 @@ namespace ShoppingList.Models
                 {
                     number = value;
                     OnProductChanged?.Invoke(this, nameof(Number));
+                    ProductList.Instance.IsModified = true;
                 }
             }
         }
@@ -133,6 +135,28 @@ namespace ShoppingList.Models
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Créer une instance de Product à partir de données au format csv
+        /// </summary>
+        /// <param name="a_data">Données d'un produit au format CSV</param>
+        /// <param name="a_separator">Caractère de séparation</param>
+        /// <returns></returns>
+        public static Product CreateFromCsvData(string a_data, char a_separator)
+        {
+            string[] items = a_data.Split(a_separator);
+            if(items.Length == 3)
+            {
+                Product product = new Product(items[0]);
+                uint number = 0;
+                uint.TryParse(items[1], out number);
+                product.Number = number;
+                product.Name = items[2];
+                product.LoadDataFromOpenFoodFactsAsync();
+                return product;
+            }
+            return null;
         }
 
     }

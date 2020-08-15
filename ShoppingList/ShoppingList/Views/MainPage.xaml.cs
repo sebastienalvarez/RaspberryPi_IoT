@@ -29,25 +29,24 @@ namespace ShoppingList.Views
             this.InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ProductListViewModel vm = new ProductListViewModel(ProductList.Instance);
             ProductListControl.DataContext = vm;
             FilterButton.DataContext = vm;
             ClearButton.DataContext = vm;
+            await ProductList.Instance.LoadCsvFileAsync();
 
-            string barCodeTest = "3178530402728";
-            ProductList.Instance.AddBarCode(barCodeTest);
-            barCodeTest = "3394215961520";
-            ProductList.Instance.AddBarCode(barCodeTest);
-            barCodeTest = "3017620420078";
-            ProductList.Instance.AddBarCode(barCodeTest);
-
-
-            //string barCodeTest = "3178530402728";
-            //Product productTest = Product.CreateProductFromBarCode(barCodeTest);
-            //ProductViewModel vm = new ProductViewModel(productTest);
-            //ProductControl.DataContext = vm;
+            // Temporaire : en attendant le lecteur code barre, si fichier vide création de 3 code barre de test
+            if(ProductList.Instance.Count == 0)
+            {
+                string barCodeTest = "3178530402728";
+                ProductList.Instance.AddBarCode(barCodeTest);
+                barCodeTest = "3394215961520";
+                ProductList.Instance.AddBarCode(barCodeTest);
+                barCodeTest = "3017620420078";
+                ProductList.Instance.AddBarCode(barCodeTest);
+            }
         }
 
         private void ProductListControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
