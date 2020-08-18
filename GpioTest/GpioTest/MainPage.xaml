@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="GpioTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GpioTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="40">GpioTest - Test d'utilisation d'une broche GPIO</TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="ButtonOn" Height="200" Width="600" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="60" Margin="0 50 0 50" Background="ForestGreen" Foreground="White" IsEnabled="False" Click="ButtonOn_Click">ALLUMER LA LED</Button>
+            <Button x:Name="ButtonOff" Height="200" Width="600" VerticalContentAlignment="Center" FontSize="60" Margin="0 00 0 50" Background="Red" Foreground="White" IsEnabled="False" Click="ButtonOff_Click">ETEINDRE LA LED</Button>
+        </StackPanel>
+        <TextBlock x:Name="TextBlockMessage" Grid.Row="2" HorizontalAlignment="Center" FontSize="40" Margin="0 0 0 50">Initialisation du controller GPIO...</TextBlock>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" FontSize="30">Sébastien ALVAREZ - Février 2020</TextBlock>
+    </Grid>
+</Page>
