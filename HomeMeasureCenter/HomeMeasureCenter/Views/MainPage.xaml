@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="HomeMeasureCenter.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HomeMeasureCenter"
+    xmlns:conv="using:HomeMeasureCenter.ViewModels.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <!--Style des StackPanel-->
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="BorderBrush" Value="#FF256487"></Setter>
+            <Setter Property="BorderThickness" Value="4"></Setter>
+        </Style>
+        
+        <!--Style des Grid d'affichage des mesures-->
+        <Style x:Key="MeasurementDisplayGridBaseStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="TemperatureDisplayGridStyle" TargetType="Grid" BasedOn="{StaticResource MeasurementDisplayGridBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Temperature.png" Opacity="0.15" AlignmentX="Left"></ImageBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HumidityDisplayGridStyle" TargetType="Grid" BasedOn="{StaticResource MeasurementDisplayGridBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Assets/Humidite.png" Opacity="0.15" AlignmentX="Left"></ImageBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MeasurementDisplayTextBlockBaseStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="TextLineBounds" Value="Tight"></Setter>
+            <Setter Property="FontFamily" Value="Digital-7 Mono"></Setter>
+        </Style>
+
+        <Style x:Key="MeasurementDisplayBigTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource MeasurementDisplayTextBlockBaseStyle}">
+            <Setter Property="Grid.RowSpan" Value="2"></Setter>
+            <Setter Property="FontSize"  Value="76"></Setter>
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+        </Style>
+
+        <Style x:Key="MeasurementDisplaySmallTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource MeasurementDisplayTextBlockBaseStyle}">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="Grid.Row"  Value="1"></Setter>
+            <Setter Property="FontSize" Value="32"></Setter>
+        </Style>
+
+        <Style x:Key="MeasurementDisplayUnitTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="FontSize" Value="32"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="TextLineBounds" Value="Tight"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="MinWidth" Value="60"></Setter>
+        </Style>
+        
+        <!--Converters-->
+        <conv:DecimalPartConverter x:Key="DecimalPartConverter"></conv:DecimalPartConverter>
+        <conv:IntegerPartConverter x:Key="IntegerPartConverter"></conv:IntegerPartConverter>
+        <x:Int32 x:Key="ParameterAs2">2</x:Int32>
+        <x:Int32 x:Key="ParameterAs3">3</x:Int32>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="TimeTextBlock" Text="{Binding Date, FallbackValue=--/--/---- --:--:--}" TextWrapping="Wrap" FontSize="70" TextAlignment="Center" FontFamily="Digital-7 Mono" FontWeight="Normal"></TextBlock>
+        
+        <GridView Grid.Row="1">
+            <StackPanel x:Name="DHTStackPanel" Style="{StaticResource StackPanelStyle}">
+                <Image Stretch="None" Source="/Assets/Interieur.png"></Image>
+                <Grid x:Name="TemperatureGrid" MinWidth="200" Style="{StaticResource TemperatureDisplayGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{Binding Temperature, Converter={StaticResource IntegerPartConverter}, ConverterParameter={StaticResource ParameterAs2}}" Style="{StaticResource MeasurementDisplayBigTextBlockStyle}"></TextBlock>
+                    <TextBlock Text=" °C" Style="{StaticResource MeasurementDisplayUnitTextBlockStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Temperature, Converter={StaticResource DecimalPartConverter}}" Style="{StaticResource MeasurementDisplaySmallTextBlockStyle}"></TextBlock>
+                </Grid>
+                <Grid x:Name="HumidityGrid" MinWidth="200" Style="{StaticResource HumidityDisplayGridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{Binding Humidity, Converter={StaticResource IntegerPartConverter}, ConverterParameter={StaticResource ParameterAs3}}" Style="{StaticResource MeasurementDisplayBigTextBlockStyle}"></TextBlock>
+                    <TextBlock Text=" %Hr" Style="{StaticResource MeasurementDisplayUnitTextBlockStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Humidity, Converter={StaticResource DecimalPartConverter}}" Style="{StaticResource MeasurementDisplaySmallTextBlockStyle}"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </GridView>
+
+        <TextBlock Grid.Row="2" x:Name="MessageTextBlock" Text="Initialisation..." TextWrapping="Wrap" FontSize="50" TextAlignment="Left" FontFamily="Digital-7 Mono" FontWeight="Normal"></TextBlock>
+    </Grid>
+</Page>
