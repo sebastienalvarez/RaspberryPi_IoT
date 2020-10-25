@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CsvDataWriter.cs" />
     <Compile Include="Models\CustomTimer.cs" />
     <Compile Include="ViewModels\Converters\DecimalPartConverter.cs" />
     <Compile Include="ViewModels\Converters\IntegerPartConverter.cs" />

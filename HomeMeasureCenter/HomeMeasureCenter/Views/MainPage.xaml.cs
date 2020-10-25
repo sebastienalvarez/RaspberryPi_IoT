@@ -31,6 +31,7 @@ namespace HomeMeasureCenter.Views
         private DHT11 dht11 = null;
         private bool isMeasurementInProgress = false;
         private object isMeasurementInProgressLock = new object();
+        private CsvDataWriter csvDataWriter = new CsvDataWriter();
 
         public MainPage()
         {
@@ -45,7 +46,7 @@ namespace HomeMeasureCenter.Views
             {
                 MessageTextBlock.Text = "Démarrage des mesures du capteur DHT11...";
                 App.log.LogEvent("Démarrage des mesures du capteur DHT11...", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
-                ReadDHT11Data();
+                ReadDHT11Data(DateTime.Now);
             }
         }
 
@@ -60,7 +61,7 @@ namespace HomeMeasureCenter.Views
         {
             if (dht11 != null)
             {
-                ReadDHT11Data();
+                ReadDHT11Data(instant);
             }
         }
 
@@ -93,7 +94,7 @@ namespace HomeMeasureCenter.Views
             }
         }
 
-        private void ReadDHT11Data()
+        private void ReadDHT11Data(DateTime a_instant)
         {
             lock (isMeasurementInProgressLock)
             {
@@ -110,6 +111,7 @@ namespace HomeMeasureCenter.Views
                 {
                     MessageTextBlock.Text = $"Dernière mesure reçue à {DateTime.Now.ToString("HH:mm:ss")}";
                     App.log.LogEvent($"Dernière mesure reçue à {DateTime.Now.ToString("HH:mm:ss")}", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
+                    csvDataWriter.AddMeasurement(a_instant, measure.Temperature, measure.Humidity);
                 }
                 else
                 {

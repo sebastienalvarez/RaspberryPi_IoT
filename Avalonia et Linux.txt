@@ -1,0 +1,23 @@
+AVALONIA ET LINUX :
+
+But : pouvoir développer des applications console et GUI IoT sur Raspberry Pi Raspbian (Linux) avec .NET Core.
+
+Framework crossplatform adapté : AVALONIA
+
+Test sur Ubuntu installé sur Machine Virtuelle avec Virtial Box 6.1 :
+On peut installer .NET Core runtime 3.1 avec l'installateur graphique de Ubuntu.
+La commande pour accéder à .NET est : dotnet-sdk.dotnet
+Pour changer par la commande usuelle dotnet, il faut utiliser :
+	sudo snap alias dotnet-sdk.dotnet dotnet
+
+Dans Visual Studio, il faut compiler l'application pour la bonne plateforme avec :
+	dotnet publish -c Release -f netcoreapp3.1 -r linux-x64
+Ainsi les bibliothèques natives Linux seront intégrées à l apublication.
+
+Dans le répertoire de publication, il y a un fichier sans extension => c'est l'executable.
+
+Dans Ubuntu, avec l'explorateur de fichier, aller dans propriétés du fichier et dans Permissions cocher Autoriser l'execution du fichier.
+L'application peut être lancée dans Linux !
+Dans le terminal, il faut taper :
+chmod +x NomApp
+./NomApp
