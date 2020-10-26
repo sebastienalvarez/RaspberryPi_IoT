@@ -21,3 +21,8 @@ L'application peut être lancée dans Linux !
 Dans le terminal, il faut taper :
 chmod +x NomApp
 ./NomApp
+
+Pour Raspbian, il faut compiler l'application pour la bonne plateforme avec :
+	dotnet publish -c Release -f netcoreapp3.1 -r linux-arm
+	
+
