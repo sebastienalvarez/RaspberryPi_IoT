@@ -33,6 +33,8 @@ namespace HomeMeasureCenter.Views
         private object isMeasurementInProgressLock = new object();
         private CsvDataWriter csvDataWriter = new CsvDataWriter();
 
+        private BMP180 bmp180 = null;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -48,6 +50,14 @@ namespace HomeMeasureCenter.Views
                 App.log.LogEvent("Démarrage des mesures du capteur DHT11...", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
                 ReadDHT11Data(DateTime.Now);
             }
+
+            InitBMP180();
+            if(bmp180 != null)
+            {
+                MessageTextBlock.Text = "Démarrage des mesures du capteur BMP180...";
+                App.log.LogEvent("Démarrage des mesures du capteur BMP180...", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
+                ReadBMP180Data();
+            }
         }
 
         private void InitTimer()
@@ -59,6 +69,11 @@ namespace HomeMeasureCenter.Views
 
         private void CustomTimer_OnMinute(object sender, DateTime instant)
         {
+            if(bmp180 != null)
+            {
+                ReadBMP180Data();
+            }
+
             if (dht11 != null)
             {
                 ReadDHT11Data(instant);
@@ -127,6 +142,33 @@ namespace HomeMeasureCenter.Views
                 {
                     isMeasurementInProgress = false;
                 }
+            }
+        }
+
+
+
+        private async void InitBMP180()
+        {
+            bmp180 = new BMP180();
+            BMP180ViewModel bmp180ViewModel = new BMP180ViewModel(bmp180);
+            BMPStackPanel.DataContext = bmp180ViewModel;
+            BMPTestStackPanel.DataContext = bmp180ViewModel;
+            MessageTextBlock.Text = $"Initialisation du capteur BMP180...";
+            App.log.LogEvent($"Initialisation du capteur BMP180...", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
+            await bmp180.ConnectAsync();
+        }
+
+        private async void ReadBMP180Data()
+        {
+            BMP180Measurement measure = await bmp180.ReadMeasurementAsync();
+            if (measure != null)
+            {
+                MessageTextBlock.Text = "Mesure reçue du capteur BMP180";
+                App.log.LogEvent("Mesure reçue du capteur BMP180", null, Windows.Foundation.Diagnostics.LoggingLevel.Verbose);
+            }
+            else
+            {
+                App.log.LogEvent($"Echec de la mesure à {DateTime.Now.ToString("HH:mm:ss")}", null, Windows.Foundation.Diagnostics.LoggingLevel.Warning);
             }
         }
 

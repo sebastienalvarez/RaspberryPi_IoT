@@ -120,7 +120,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="I2C\I2cDeviceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensors\BMP180.cs" />
+    <Compile Include="Sensors\BMP180CalibrationData.cs" />
+    <Compile Include="Sensors\BMP180Measurement.cs" />
+    <Compile Include="Sensors\BMP180PressureResolution.cs" />
+    <Compile Include="Sensors\BMP180ViewModel.cs" />
     <Compile Include="Sensors\DHT11.cs" />
     <Compile Include="Sensors\DHT11BusIO.cs" />
     <Compile Include="Sensors\DHT11Measurement.cs" />
