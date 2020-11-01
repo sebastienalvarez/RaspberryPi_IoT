@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMP180AvaloniaTest", "BMP180AvaloniaTest\BMP180AvaloniaTest.csproj", "{4E8CC3BC-84B4-4152-ABD2-72D737E5FEE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E8CC3BC-84B4-4152-ABD2-72D737E5FEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8CC3BC-84B4-4152-ABD2-72D737E5FEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8CC3BC-84B4-4152-ABD2-72D737E5FEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8CC3BC-84B4-4152-ABD2-72D737E5FEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1783D9BE-B8BC-408C-B2C6-6905F64A0600}
+	EndGlobalSection
+EndGlobal
