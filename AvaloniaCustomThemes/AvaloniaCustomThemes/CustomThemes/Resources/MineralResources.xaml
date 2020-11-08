@@ -1,0 +1,22 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+  <Styles.Resources>
+    <!--COLOR DEFINITIONS-->
+    <Color x:Key="WindowBackgroundColor">#867b70</Color>
+    <Color x:Key="WindowForegroundColor">#1c1618</Color>
+    
+    <Color x:Key="ControlNormalColor">#927973</Color>
+    <Color x:Key="ControlHighlightedColor">#1c1618</Color>
+    <Color x:Key="ControlActionColor">#181413</Color>
+    <Color x:Key="ControlDisabledColor">#1c1618</Color>
+
+    <Color x:Key="ControlNormalTextColor">#927973</Color>
+    <Color x:Key="ControlHighlightedTextColor">#1c1618</Color>
+    <Color x:Key="ControlActionTextColor">#181413</Color>
+    <Color x:Key="ControlDisabledTextColor">#1c1618</Color>
+
+
+  </Styles.Resources>
+
+</Styles>

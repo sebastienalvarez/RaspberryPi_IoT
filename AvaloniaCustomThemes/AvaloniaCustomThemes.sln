@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaCustomThemes", "AvaloniaCustomThemes\AvaloniaCustomThemes.csproj", "{C67B0677-76CB-451C-B9A0-A394BFF26FD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C67B0677-76CB-451C-B9A0-A394BFF26FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67B0677-76CB-451C-B9A0-A394BFF26FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67B0677-76CB-451C-B9A0-A394BFF26FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67B0677-76CB-451C-B9A0-A394BFF26FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BAA0941-E54F-4885-A204-00A7EA9C1680}
+	EndGlobalSection
+EndGlobal

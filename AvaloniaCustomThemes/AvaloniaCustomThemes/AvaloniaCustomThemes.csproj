@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.9.12" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
+    <PackageReference Include="Citrus.Avalonia" Version="1.2.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="CustomThemes\Mineral.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Resources\MineralResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\BorderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\CalendarStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\CheckBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ComboBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\Index.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ListBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\MenuStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\NumericUpDownStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ProgressBarStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\RadioButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\SliderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\TabControlStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\TextBlockStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\TextBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\ToggleButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\TreeViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomThemes\Styles\Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

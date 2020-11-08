@@ -1,0 +1,57 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="TextBlock">
+        <Setter Property="FontSize" Value="30"></Setter>
+    </Style>
+
+    <Style Selector="TextBlock.title">
+        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Margin" Value="20"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style Selector="TextBlock.measurement">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontStyle" Value="Italic"></Setter>
+        <Setter Property="Margin" Value="60 5 0 5"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style Selector="TextBlock.message">
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="Margin" Value="30 15 0 15"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+
+    <Style Selector="TextBlock.end">
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style Selector="Button">
+        <Setter Property="Background" Value="OrangeRed"></Setter>
+        <Setter Property="Margin" Value="30 40 30 40"></Setter>
+    </Style>
+
+    <Style Selector="Button:disabled">
+        <Setter Property="Background" Value="LightGray"></Setter>
+        <Setter Property="Foreground" Value="DarkGray"></Setter>
+    </Style>
+
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="Maroon"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+
+    <Style Selector="ToolTip">
+        <Setter Property="Background" Value="LightYellow"></Setter>
+    </Style>
+
+    <Style Selector="TextBlock.tooltip">
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+</Styles>

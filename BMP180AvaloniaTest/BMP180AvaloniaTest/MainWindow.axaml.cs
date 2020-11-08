@@ -1,7 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
 using BMP180AvaloniaTest.Sensors;
+using System;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -15,7 +18,7 @@ namespace BMP180AvaloniaTest
         private Button connectionButton;
         private Button measurementButton;
         ICommand connectionCommand;
-        ICommand measurementCommand; 
+        ICommand measurementCommand;
 
         // CONSTRUCTEUR
         public MainWindow()
@@ -35,7 +38,7 @@ namespace BMP180AvaloniaTest
             measurementButton = this.FindControl<Button>("MeasurementButton");
             DisplayMessage("Bienvenue sur l'application de test du portage .NET Core de la bibliothèque BMP180");
             this.Opened += MainWindow_Opened;
-            
+
             connectionCommand = new ActionCommand((parameter) =>
             {
                 if (!sensor.IsConnected)
@@ -89,6 +92,19 @@ namespace BMP180AvaloniaTest
             {
                 messageTextBlock.Text = a_message;
             }
+        }
+
+        // Binding avec la méthode ne fonctionne pas, le bouton est toujours inactif ??
+        private void FalseConnectionCommand(string a_parameter)
+        {
+            if (!string.IsNullOrEmpty(a_parameter))
+            {
+                if(a_parameter == "Valid")
+                {
+                    DisplayMessage("FAUSSE COMMANDE : CONNEXION OK");
+                }
+            }
+            DisplayMessage("FAUSSE COMMANDE : CONNEXION KO");
         }
 
     }

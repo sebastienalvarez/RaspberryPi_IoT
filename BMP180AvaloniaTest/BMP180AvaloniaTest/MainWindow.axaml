@@ -2,25 +2,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:conv="clr-namespace:BMP180AvaloniaTest.ViewModel.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MinWidth="1150" Width="1150" MinHeight="650" Height="650"
         x:Class="BMP180AvaloniaTest.MainWindow"
         Title="Test portage BMP180 .NET Core / Avalonia UI"
         Icon="/Assets/raspberry.ico">
+  <Window.Resources>
+    <conv:BoolToConnectionMessageConverter x:Key="BoolToConnectionMessageConverter"></conv:BoolToConnectionMessageConverter>
+    <conv:BoolToBrushConverter x:Key="BoolToBrushConverter"></conv:BoolToBrushConverter>
+    <conv:DoubleMeasureConverter x:Key="DoubleMeasureConverter"></conv:DoubleMeasureConverter>
+    <x:String x:Key="DegreeCelsiusParameter">°C</x:String>
+    <x:String x:Key="MbarParameter">mbar</x:String>
+  </Window.Resources>
+  
   <Window.Styles>
-    <Style Selector="TextBlock">
-      <Setter Property="FontSize" Value="30"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.measurement">
-      <Setter Property="FontStyle" Value="Italic"></Setter>
-      <Setter Property="Margin" Value="30 0 0 0"></Setter>
-      <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="Button">
-      <Setter Property="Background" Value="Red"></Setter>
-      <Setter Property="Margin" Value="10 40 10 40"></Setter>
-    </Style>  
+    <StyleInclude Source="/Styles.xaml" />
   </Window.Styles>
   
     <Grid>
@@ -33,24 +30,37 @@
         <RowDefinition Height="Auto"></RowDefinition>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0">TEST BIBLIOTHEQUE BMP180 .NET CORE / AVALONIA UI</TextBlock>
-      <Button Name="ConnectionButton" Grid.Row="1">INITIALISER CONNEXION</Button>
+      <TextBlock Grid.Row="0" Classes="title">TEST BIBLIOTHEQUE BMP180 .NET CORE / AVALONIA UI</TextBlock>
+
+      <Button Name="ConnectionButton" Grid.Row="1" IsEnabled="{Binding !IsConnected}" Margin="30 0 30 0">
+        <Button.Content>INITIALISER CONNEXION</Button.Content>
+        <ToolTip.Tip>
+          <TextBlock Classes="tooltip">Initialiser une connexion à un capteur BMP180</TextBlock>
+        </ToolTip.Tip>
+      </Button>
+      
       <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal">
           <TextBlock Classes="measurement">CONNEXION : </TextBlock>
-          <TextBlock Text="{Binding IsConnected}" Classes="measurement"></TextBlock>
+          <TextBlock Text="{Binding IsConnected, Converter={StaticResource BoolToConnectionMessageConverter}}" Classes="measurement" TextBlock.Foreground="{Binding IsConnected, Converter={StaticResource BoolToBrushConverter}}"></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
           <TextBlock Classes="measurement">TEMPERATURE : </TextBlock>
-          <TextBlock Text="{Binding Temperature}" Classes="measurement"></TextBlock>
+          <TextBlock Text="{Binding Temperature, Converter={StaticResource DoubleMeasureConverter}, ConverterParameter={StaticResource DegreeCelsiusParameter}}" Classes="measurement"></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
           <TextBlock Classes="measurement">PRESSION : </TextBlock>
-          <TextBlock Text="{Binding Pressure}" Classes="measurement"></TextBlock>
+          <TextBlock Text="{Binding Pressure, Converter={StaticResource DoubleMeasureConverter}, ConverterParameter={StaticResource MbarParameter}}" Classes="measurement"></TextBlock>
+          <!--<TextBlock Text="{Binding Pressure, StringFormat={}{0:f2} mbar}" Classes="measurement"></TextBlock>-->
         </StackPanel>
       </StackPanel>
-      <Button Name="MeasurementButton" Grid.Row="3">PRENDRE UNE MESURE</Button>
-      <TextBlock Name="MessageTextBlock" Grid.Row="4"></TextBlock>
-      <TextBlock Grid.Row="5">Sébastien ALVAREZ - Octobre 2020</TextBlock>
+      <Button Name="MeasurementButton" Grid.Row="3" IsEnabled="{Binding IsConnected}">        
+        <Button.Content>PRENDRE UNE MESURE</Button.Content>
+        <ToolTip.Tip>
+          <TextBlock Classes="tooltip">Effectuer une mesure sur le capteur BMP180</TextBlock>
+        </ToolTip.Tip>
+      </Button>
+      <TextBlock Name="MessageTextBlock" Grid.Row="4" Classes="message"></TextBlock>
+      <TextBlock Grid.Row="5" Classes="end">Sébastien ALVAREZ - Octobre 2020</TextBlock>
     </Grid>    
 </Window>

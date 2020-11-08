@@ -6,13 +6,21 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\raspberry.ico" />
+    <None Remove="Assets\Styles-CitrusBased.xaml" />
+    <None Remove="Styles.xaml" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\raspberry.ico" />
   </ItemGroup>
   <ItemGroup>
+    <AvaloniaXaml Include="Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.12" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
+    <PackageReference Include="Citrus.Avalonia" Version="1.2.6" />
     <PackageReference Include="System.Device.Gpio" Version="1.0.0" />
   </ItemGroup>
 </Project>
